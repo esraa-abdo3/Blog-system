@@ -3,12 +3,19 @@ const app = express();
 const  cors = require('cors')
 const monogoose = require("mongoose");
 require('dotenv').config();
+const passport = require("passport");
 const url = process.env.DB_URI; 
 monogoose.connect(url).then(() => {
   console.log("mongoose server connect")
 })
 app.use(cors())
 app.use(express.json());
+app.use(passport.initialize());
+
+const authRoutes = require("./routes/Authroutes");
+app.use("/api/v1/auth", authRoutes);
+
+
 
 // gloabel middleware for all not vaild routes
 app.all(/.*/, (req, res) => {
@@ -25,5 +32,5 @@ app.use((err, req, res, next) => {
 })
 
 app.listen( process.env.PORT || 5000, () => {
-  console.log(`Example app listening at http://localhost:${5000}`);
+  console.log(`Example app listening at http://localhost:${3000}`);
 });
