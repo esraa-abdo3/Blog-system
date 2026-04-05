@@ -15,6 +15,9 @@ app.use(passport.initialize());
 const authRoutes = require("./routes/Authroutes");
 app.use("/api/v1/auth", authRoutes);
 
+const userRoutes = require("./routes/userroutes");
+app.use("/api/v1/users", userRoutes);
+
 
 
 // gloabel middleware for all not vaild routes
