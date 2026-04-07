@@ -12,13 +12,13 @@ app.use(cors())
 app.use(express.json());
 app.use(passport.initialize());
 
-const authRoutes = require("./routes/Authroutes");
+const authRoutes = require("./routes/Authroutes.js");
 app.use("/api/v1/auth", authRoutes);
 
-const userRoutes = require("./routes/userroutes");
+const userRoutes = require("./routes/userroutes.js");
 app.use("/api/v1/users", userRoutes);
 
-const postRoutes = require("./routes/postsroutes");
+const postRoutes = require("./routes/postsroutes.js");
 app.use("/api/v1/posts", postRoutes);
 const groupRoutes = require("./routes/GroupRoutes.js");
 app.use("/api/v1/groups", groupRoutes);
