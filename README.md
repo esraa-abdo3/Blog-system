@@ -61,6 +61,12 @@ It simulates a production-ready backend system with:
 | Validation| Joi (or alternative)     |
 
 ---
+## 📚 Documentation
+
+For full API documentation, endpoints, and usage guide, check out the **official documentation**:
+
+[📖 Project Documentation](https://documenter.getpostman.com/view/38813211/2sBXirhTK5#a8ef2671-f795-47be-80bd-c80b74795e5b)
+---
 
 ## 📂 Project Structure
 
@@ -72,11 +78,11 @@ It simulates a production-ready backend system with:
   /middleware
   /utils
     AppError.js
-## 📚 Documentation
 
-For full API documentation, endpoints, and usage guide, check out the **official documentation**:
-
-[📖 Project Documentation](https://documenter.getpostman.com/view/38813211/2sBXirhTK5#a8ef2671-f795-47be-80bd-c80b74795e5b)
   /config
   server.js
   app.js
+
+
+---
+
