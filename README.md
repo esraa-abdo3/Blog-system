@@ -25,6 +25,7 @@ It simulates a production-ready backend system with:
 - Password hashing  
 - JWT-based authentication  
 - Protected routes
+- **Optional Google Login** 🌐 (Sign in with Google account)
 
 ### 👤 Users & Posts CRUD
 - Users: Create, Update, Delete, Get all  
