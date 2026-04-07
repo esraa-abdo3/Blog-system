@@ -21,7 +21,7 @@ mongoconnect()
 const authRoutes = require("./routes/Authroutes.js");
 app.use("/api/v1/auth", authRoutes);
 
-const userRoutes = require("./routes/userroutes.js");
+const userRoutes = require("./routes/Userroutes.js");
 app.use("/api/v1/users", userRoutes);
 
 const postRoutes = require("./routes/postsroutes.js");
