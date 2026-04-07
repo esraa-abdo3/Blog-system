@@ -1,45 +1,53 @@
+// api/server.js   ← مهم يكون داخل مجلد api على Vercel
 const express = require("express");
-const app = express();
-const  cors = require('cors')
-const monogoose = require("mongoose");
-require('dotenv').config();
+const serverless = require("serverless-http"); 
+const mongoose = require("mongoose");
+require("dotenv").config();
+const cors = require("cors");
 const passport = require("passport");
-const url = process.env.DB_URI; 
-monogoose.connect(url).then(() => {
-  console.log("mongoose server connect")
-})
-app.use(cors())
+
+const app = express();
+
+// Middleware
+app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
 
-const authRoutes = require("./routes/Authroutes.js");
+// Connect to MongoDB
+mongoose
+  .connect(process.env.DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    retryWrites: true,
+    w: "majority",
+  })
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.log("❌ MongoDB connection error:", err));
+
+// Routes
+const authRoutes = require("../../routes/Authroutes.js");
 app.use("/api/v1/auth", authRoutes);
 
-const userRoutes = require("./routes/userroutes.js");
+const userRoutes = require("../../routes/userroutes.js");
 app.use("/api/v1/users", userRoutes);
 
-const postRoutes = require("./routes/postsroutes.js");
+const postRoutes = require("../../routes/postsroutes.js");
 app.use("/api/v1/posts", postRoutes);
-const groupRoutes = require("./routes/GroupRoutes.js");
+
+const groupRoutes = require("../../routes/GroupRoutes.js");
 app.use("/api/v1/groups", groupRoutes);
 
-
-
-
-// gloabel middleware for all not vaild routes
+// Global 404
 app.all(/.*/, (req, res) => {
-  res.status(404).json({
-    status: "Error",
-    msg: "route not found"
-  });
+  res.status(404).json({ status: "Error", msg: "Route not found" });
 });
 
-
-// gloabel middleware for all errors
+// Global error handler
 app.use((err, req, res, next) => {
-  res.status(err.statuscode||500).json({status:err.statustext ||"Error", msg: err.msg ||err.message, code:err.statuscode, data:null})
-})
-
-app.listen( process.env.PORT || 5000, () => {
-  console.log(`Example app listening at http://localhost:${5000}`);
+  res
+    .status(err.statusCode || 500)
+    .json({ status: err.statusText || "Error", msg: err.msg || err.message, code: err.statusCode, data: null });
 });
+
+// بدل app.listen نعمل export للـ handler
+module.exports.handler = serverless(app);
