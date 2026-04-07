@@ -18,16 +18,16 @@ app.use(passport.initialize());
 mongoconnect()
 
 // Routes
-const authRoutes = require("../../routes/Authroutes.js");
+const authRoutes = require("./routes/Authroutes.js");
 app.use("/api/v1/auth", authRoutes);
 
-const userRoutes = require("../../routes/userroutes.js");
+const userRoutes = require("./routes/userroutes.js");
 app.use("/api/v1/users", userRoutes);
 
-const postRoutes = require("../../routes/postsroutes.js");
+const postRoutes = require("./routes/postsroutes.js");
 app.use("/api/v1/posts", postRoutes);
 
-const groupRoutes = require("../../routes/GroupRoutes.js");
+const groupRoutes = require("./routes/GroupRoutes.js");
 
 app.use("/api/v1/groups", groupRoutes);
 
