@@ -37,7 +37,7 @@ const updateUser = Asncwrapper(async (req, res,next) => {
 })
 
 //4- delete user
-const deleteUser = Asncwrapper(async (req, res,res) => {
+const deleteUser = Asncwrapper(async (req, res,next) => {
     const { id } = req.params;
     const user = await User.findByIdAndDelete(id);
     if (!user) {

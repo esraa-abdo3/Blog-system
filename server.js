@@ -18,6 +18,12 @@ app.use("/api/v1/auth", authRoutes);
 const userRoutes = require("./routes/userroutes");
 app.use("/api/v1/users", userRoutes);
 
+const postRoutes = require("./routes/postsroutes");
+app.use("/api/v1/posts", postRoutes);
+const groupRoutes = require("./routes/GroupRoutes.js");
+app.use("/api/v1/groups", groupRoutes);
+
+
 
 
 // gloabel middleware for all not vaild routes
@@ -35,5 +41,5 @@ app.use((err, req, res, next) => {
 })
 
 app.listen( process.env.PORT || 5000, () => {
-  console.log(`Example app listening at http://localhost:${3000}`);
+  console.log(`Example app listening at http://localhost:${5000}`);
 });
