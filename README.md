@@ -1,9 +1,5 @@
 # 📝 Blog Application (Express, MongoDB, Auth & Media Upload)
 
-![GitHub Repo Size](https://img.shields.io/github/repo-size/yourusername/blog-app?color=blue)
-![GitHub stars](https://img.shields.io/github/stars/yourusername/blog-app?color=yellow)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/blog-app?color=green)
-![License](https://img.shields.io/github/license/yourusername/blog-app?color=red)
 
 ---
 
