@@ -194,17 +194,32 @@ const getUserPosts = Asncwarpper(async (req, res, next) => {
 });
 
 // delete post by id
+// const deletePost = Asncwarpper(async (req, res, next) => {
+//   const post = await Post.findById(req.params.id);
+
+//   if (!post) return next(AppError.createError("Post not found", 404, "Fail"));
+
+//   if (post.author !== req.user.id && req.user.role !== "manager") {
+//     return next( AppError.createError("You cannot delete this post", 403, "Fail"));
+//   }
+
+//  await post.deleteOne();
+
+//   res.status(200).json({
+//     status: "Success",
+//     msg: "Post deleted successfully"
+//   });
+// });
 const deletePost = Asncwarpper(async (req, res, next) => {
   const post = await Post.findById(req.params.id);
-
   if (!post) return next(AppError.createError("Post not found", 404, "Fail"));
 
-  if (post.author !== req.user.id && req.user.role !== "manager") {
-    return next( AppError.createError("You cannot delete this post", 403, "Fail"));
+  // ✅ .toString() على الـ ObjectId قبل المقارنة
+  if (post.author.toString() !== req.user.id.toString() && req.user.role !== "manager") {
+    return next(AppError.createError("You cannot delete this post", 403, "Fail"));
   }
 
- await post.deleteOne();
-
+  await post.deleteOne();
   res.status(200).json({
     status: "Success",
     msg: "Post deleted successfully"
