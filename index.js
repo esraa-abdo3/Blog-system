@@ -20,7 +20,7 @@ app.use(cors({
 }));
 
 // مهم جداً — handle الـ OPTIONS manually
-app.options('*', cors());
+
 app.use(express.json());
 app.use(passport.initialize());
 
@@ -43,9 +43,12 @@ const groupRoutes = require("./routes/GroupRoutes.js");
 app.use("/api/v1/groups", groupRoutes);
 
 // Global 404
-app.all(/.*/, (req, res) => {
+// app.all(/.*/, (req, res) => {
+//   res.status(404).json({ status: "Error", msg: "Route not found" });
+// });
+app.use((req, res) => {
   res.status(404).json({ status: "Error", msg: "Route not found" });
-});
+}); 
 
 // Global error handler
 app.use((err, req, res, next) => {
